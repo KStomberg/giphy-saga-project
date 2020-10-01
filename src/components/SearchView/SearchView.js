@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 class SearchView extends Component {
 
   render() {
+
+    
     return (
       <div>
         <h1>Giphy Search!</h1>
@@ -17,5 +19,7 @@ class SearchView extends Component {
   }
   
 }
+
+
 
 export default SearchView;
