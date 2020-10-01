@@ -13,12 +13,11 @@ router.get('/', (req, res) => {
       limit: 20,
       params: {
         api_key: process.env.GIPHY_API_KEY,
-        q: 'legos' 
-        
+        q: 'shrek'
+        //this.props.gifList
       }
     }).then(response => {
         console.log('got back data', response.data);
-        
         res.send(response.data);
       }).catch(err => {
         console.error(err);
