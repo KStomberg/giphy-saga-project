@@ -1,0 +1,14 @@
+    [] Search View
+        [] Text input to take in a search query
+            [] Query giphy with search input
+            [] Return giphy results on DOM
+                [] Limit results to 20 gifs
+            [] Create favorite button for each gif
+                [] Allow user to click favorite button and save to DB for /favorites
+
+    [] Favorites View  
+        [] Display all favorited gifs on DOM ('GET')
+        [] Allow user to set catagory of gifs
+            [] For base mode, only one catagory per image
+            [] drop down menu for catagories.
+                [] Button to make a 'PUT' req to update giphy information
