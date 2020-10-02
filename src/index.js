@@ -25,25 +25,37 @@ function* fetchGifSaga(action){
     })
 }
 
+function* fetchFavoriteSaga(action){
+  console.log('in fetchFavoriteSaga with:', action);
+  let response = yield axios({
+    method: 'GET',
+    url: `/api/favorite`
+  })
+  console.log('back from GET favorite with:', response.data);
+  yield put({
+        type: 'ADD_FAVORITE',
+        payload: response.data
+  })
+}
 
 function* addFavoriteSaga(action){
     console.log('in addFavoriteSaga with:', action);
-    let response = yield axios({
+    yield axios({
       method: 'POST',
       url: `/api/favorite`,
       data: action.payload
     })
 
-    //will need to make get req for favorites page
+    yield put({
+      type: `GET`,
+      url: `/api/favorite`
+    })
 }
-
-
-
-
 
 function* rootSaga() {
 yield takeEvery('FETCH_GIF', fetchGifSaga);
 yield takeEvery('CREATE_FAVORITE', addFavoriteSaga);
+yield takeEvery('FETCH_FAVORITE', fetchFavoriteSaga)
 }
 
 const sagaMiddleware = createSagaMiddleware();
@@ -56,8 +68,17 @@ const gifList = (state = [], action) => {
       return state;
   }
 };
+const favoriteList = (state = [], action) => {
+  console.log('state is:', state);
+  switch (action.type) {
+    case 'ADD_FAVORITE':
+      return action.payload
+    default:
+      return state;
+  }
+}
 const store = createStore(
-  combineReducers({ gifList }),
+  combineReducers({ gifList, favoriteList }),
   applyMiddleware(sagaMiddleware, logger),
 );
 sagaMiddleware.run(rootSaga);
