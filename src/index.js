@@ -34,7 +34,7 @@ function* fetchFavoriteSaga(action){
   console.log('back from GET favorite with:', response.data);
   yield put({
         type: 'ADD_FAVORITE',
-        payload: response.data.data
+        payload: response.data
   })
 }
 
@@ -68,8 +68,17 @@ const gifList = (state = [], action) => {
       return state;
   }
 };
+const favoriteList = (state = [], action) => {
+  console.log('state is:', state);
+  switch (action.type) {
+    case 'ADD_FAVORITE':
+      return action.payload
+    default:
+      return state;
+  }
+}
 const store = createStore(
-  combineReducers({ gifList }),
+  combineReducers({ gifList, favoriteList }),
   applyMiddleware(sagaMiddleware, logger),
 );
 sagaMiddleware.run(rootSaga);
