@@ -15,13 +15,13 @@ function* fetchGifSaga(action){
     console.log('in fetchGifSaga with:', action);
     let response = yield axios({
         method: 'GET',
-        url: '/api/query',
+        url: `/api/query/${action.payload}`,
         // payload: {action}
     })
     console.log('back from GET with:', response.data);
     yield put({
         type: 'ADD_GIF',
-        payload: response.data
+        payload: response.data.data
     })
 }
 

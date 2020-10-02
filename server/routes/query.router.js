@@ -5,17 +5,17 @@ require('dotenv').config();
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/:tacos', (req, res) => {
     //res.send('Hello World'); // Replace this
     axios({
       method: 'GET',
-      url: `https://api.giphy.com/v1/gifs/search`,
+      url: `http://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${req.params.tacos}`,
       limit: 20,
-      params: {
-        api_key: process.env.GIPHY_API_KEY,
-        q: 'shrek'
-        //this.props.gifList
-      }
+    //   params: {
+    //     api_key: process.env.GIPHY_API_KEY,
+    //     q: `req.params.tacos`
+    //     //this.props.gifList
+    //   }
     }).then(response => {
         console.log('got back data', response.data);
         res.send(response.data);
