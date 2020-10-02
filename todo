@@ -1,9 +1,9 @@
     [] Search View
         [] Text input to take in a search query
-            [] Query giphy with search input
-            [] Return giphy results on DOM
+            [x] Query giphy with search input
+            [x] Return giphy results on DOM
                 [] Limit results to 20 gifs
-            [] Create favorite button for each gif
+            [x] Create favorite button for each gif
                 [] Allow user to click favorite button and save to DB for /favorites
 
     [] Favorites View  

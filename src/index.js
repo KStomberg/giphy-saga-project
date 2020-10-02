@@ -26,9 +26,15 @@ function* fetchGifSaga(action){
 }
 
 
-function* addGifSaga(action){
-    console.log('in addGifSaga with:', action);
-    
+function* addFavoriteSaga(action){
+    console.log('in addFavoriteSaga with:', action);
+    let response = yield axios({
+      method: 'POST',
+      url: `/api/favorite`,
+      data: action.payload
+    })
+
+    //will need to make get req for favorites page
 }
 
 
@@ -37,7 +43,7 @@ function* addGifSaga(action){
 
 function* rootSaga() {
 yield takeEvery('FETCH_GIF', fetchGifSaga);
-yield takeEvery('FAV_GIF', addGifSaga);
+yield takeEvery('CREATE_FAVORITE', addFavoriteSaga);
 }
 
 const sagaMiddleware = createSagaMiddleware();
