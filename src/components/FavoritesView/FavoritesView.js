@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import FavoriteViewItem from '../FavoriteViewItem/FavoriteViewItem'
 const mapStateToProps = reduxState => ({
   reduxState,
 });
@@ -15,11 +16,14 @@ fetchFavorite=(event)=>{
       type: 'FETCH_FAVORITE',
     })
 }
+
     render() {
       return (
         <div>
           <h1>Favorites</h1>
-      <p>{JSON.stringify(this.props)}</p>
+      {/* <p>{JSON.stringify(this.props.reduxState.favoriteList)}</p> */}
+          {this.props.reduxState.favoriteList.map((image, i) => 
+            <FavoriteViewItem key={image.id} image={image} />)}
   
   
         </div>
