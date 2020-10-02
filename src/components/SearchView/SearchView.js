@@ -45,11 +45,7 @@ render() {
            
         {this.props.reduxState.gifList.map((image, i)=>
                 <SearchViewItem key={image.id} image={image} />)}
-         {/* { this.props.reduxState.gifList.map((item) =>{
-        //  {gifItems.map((gifItem) =>{
-            return ( 
-            <img src={item.url}/>
-            )})}        */}
+         
 
         {/* <p>{JSON.stringify(this.props.reduxState.gifList)}</p> */}
                 {/* <p>{JSON.stringify(gifItems)}</p> */}
